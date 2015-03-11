@@ -2,7 +2,7 @@
 require 'capybara/rspec'
 
 # We will use the selenium driver
-Capybara.current_driver = :selenium
+Capybara.default_driver = :selenium
 
 # We will not run our own server; we will connect to a remote server
 Capybara.run_server = false
