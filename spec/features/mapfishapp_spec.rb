@@ -1,4 +1,4 @@
-feature "Mapfishapp (the viewer)" do
+feature "Browsing mapfishapp (the viewer)" do
 
   # Scenario #1: Loading the viewer
 
