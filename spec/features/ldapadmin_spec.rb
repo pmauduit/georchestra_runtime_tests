@@ -12,16 +12,12 @@ feature "Browsing the ldapadmin webapp" do
     fill_in "username", :with => "testadmin"
     fill_in "password", :with => "testadmin"
     page.find('input[type="submit"]').click
+    sleep 1
     expect(current_path).to eq('/ldapadmin/account/userdetails')
   end
   # Scenario #3: Attemps to visit the ldapadmin interface
   it 'should let the testadmin/testadmin user avec access to the main ui' do
-    visit '/ldapadmin'
-    fill_in "username", :with => "testadmin"
-    fill_in "password", :with => "testadmin"
-    page.find('input[type="submit"]').click
-    # user is redirected onto his userdetails page (see #2)
-    visit '/ldapadmin/'
+    visit '/ldapadmin/privateui/'
     expect(current_path).to eq('/ldapadmin/privateui/')
     expect(page).to have_title 'LDAPadmin - geOrchestra'
     expect(page).to have_css '#new_user'

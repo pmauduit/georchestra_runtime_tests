@@ -20,5 +20,13 @@ Capybara.app_host = 'https://georchestra.mydomain.org'
 #  end
 #end
 
+Capybara.register_driver :selenium do |app|
+  # It will require to install the chromedriver package
+  # and add /usr/lib/chromium to the PATH
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  #Capybara::Selenium::Driver.new(app, :browser => :firefox)
+end
+
 window = Capybara.current_session.driver.browser.manage.window
 window.maximize
+

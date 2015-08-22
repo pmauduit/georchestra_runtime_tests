@@ -23,6 +23,8 @@ feature "Mapfishapp (the viewer)" do
     page.find(:xpath, "//b[text()='Altitude : shaded relief']").click
     page.find(:xpath, "//button[text()='Add (1)']").click
 
+    # chrome driver is a bit too fast
+    sleep 1
     # check that the layer has been loaded
     altitudeLayerLoaded = false
     page.all(:xpath, "//img").each do |elem|
