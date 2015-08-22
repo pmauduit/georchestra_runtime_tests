@@ -1,8 +1,16 @@
 feature "Mapfishapp (the viewer)" do
-  it 'should display viewer page' do
+
+  # Scenario #1: Loading the viewer
+
+  # In the regular configuration, the viewer
+  # is accessible even when not connected
+  it 'should display the viewer page' do
     visit('/mapfishapp/')
     expect(page).to have_content 'Add layers'
   end
+
+  # Scenario #2: Loading a remote layer
+
   it 'should load a layer (dem:altitude)' do
     visit('/mapfishapp')
     click_button('Add layers')
@@ -19,7 +27,8 @@ feature "Mapfishapp (the viewer)" do
     altitudeLayerLoaded = false
     page.all(:xpath, "//img").each do |elem|
       next if altitudeLayerLoaded
-      if elem['src'].include? "LAYERS=dem%3Aaltitude" then
+      next if elem['src'].nil? || elem['src'].empty?
+      if elem['src'].include? "LAYERS=dem%3Ahillshading" then
        altitudeLayerLoaded = true
        break
       end
