@@ -1,3 +1,3 @@
 --require spec_helper
 --format html
---out rspec_results.html
+--out rspec_result.html
