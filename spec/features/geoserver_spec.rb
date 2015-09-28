@@ -19,6 +19,7 @@ end
 feature "Browsing the geoserver UI" do
   # Scenario #1: not connected
   it 'should show the UI with minimal menu' do
+    visit('/cas/logout')
     visit('/geoserver/')
     expect(page).to have_title 'GeoServer: Welcome'
     expect(get_geoserver_menu_links.length).to equal(2)

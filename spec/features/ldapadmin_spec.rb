@@ -2,6 +2,8 @@ feature "Browsing the ldapadmin webapp" do
   # Scenario #1: not connected
   # Checks that the SP redirects us onto CAS
   it 'should redirect onto CAS if we are not connected' do
+    # ensures we are not connected
+    visit('/cas/logout')
     visit('/ldapadmin/')
     expect(page).to have_title 'CAS - geOrchestra'
   end
