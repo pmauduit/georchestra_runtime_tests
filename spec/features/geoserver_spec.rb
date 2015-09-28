@@ -22,7 +22,8 @@ feature "Browsing the geoserver UI" do
     visit('/geoserver/')
     expect(page).to have_title 'GeoServer: Welcome'
     expect(get_geoserver_menu_links.length).to equal(2)
-    expect(test_geoserver_oops_something_went_wrong).to be_empty
+    failing_pages = test_geoserver_oops_something_went_wrong
+    expect(failing_pages).to be_empty, "Current failing GeoServer pages: #{failing_pages.join(', ')}"
   end
   # Scenario #2: logged as testadmin/testadmin
   it 'should show the UI with every menu available if connected as testadmin' do
@@ -32,7 +33,8 @@ feature "Browsing the geoserver UI" do
     fill_in "password", :with => "testadmin"
     page.find('input[type="submit"]').click
     expect(page).to have_title 'GeoServer: Welcome'
-    expect(test_geoserver_oops_something_went_wrong).to be_empty
+    failing_pages = test_geoserver_oops_something_went_wrong
+    expect(failing_pages).to be_empty, "Current failing GeoServer pages: #{failing_pages.join(', ')}"
   end
 end
 
