@@ -1,39 +1,57 @@
-# Remote Application Testing Template
+## geOrchestra runtime tests
 
-This template can be used as the minimal base for testing remote applications. 
-It uses a combination of Rspec and Capybara to do the testing.
+# Requirements
 
-Inspired by https://github.com/searls/remote-capybara-cucumber-example . 
-Use that if you wish to use cucumber scenarios instead of rspec
+- ruby, bundler
+- chromium, chromedriver
 
-## Getting started
+By default, the instrumented browser will be chrome/chromium, but it is also
+possible to run the testsuite into firefox.
 
-There are two ways of getting started. The first is to clone this git repository,
-install the gems and away you go. Like so:
+# Install
 
-    git clone git://github.com/rurounijones/remote-capybara-rspec-template.git
-    cd remote-capybara-rspec-template
-    bundle install
-    bundle exec rake spec
+```
+$ sudo apt-get install bundler chromedriver
 
-However this means your test's version history will include my commits which may
-not be what you are after. 
+```
 
-What you might want to do instead is download this project using the github "ZIP"
-link, remove the default google spec then start committing and modifying for your
-projects.
+Then, once in the source tree:
 
-## Hacking
+```
+$ bundle install
+```
 
-All the setup is done inside spec_helper.rb and the specs are inside the spec/features
-directory. RSpec expects to find files that have a *_spec.rb naming format.
+Under `debian8`, the `chromedriver` is not available in the `PATH` by default,
+so you will have to add it to the environment variable before launching the
+tests:
 
-Modifications you might want to try are:
+```
+$ export PATH=$PATH:/usr/lib/chromium
+```
 
-* If you have access to the remote site's database then include active_record
-(Or your ORM/ODM of choice), factory_girl and database_cleaner and automatically setup test data.
-* If selenium is not for you, what about some other drivers like capybara-webkit?
-* Add some output options to a .rspec file (colours, formatters etc.)
+# Launch a single test
 
-This template was extracted from an automated test suite for a remote .Net application
-which used all of the above, so it is possible.
+To launch a single test (e.g. geoserver), use the following command:
+
+```
+$ bundle exec rspec spec/features/geoserver_spec.rb
+```
+
+An HTML report will then be available into the current directory under the
+filename `rspec_result.html`.
+
+# Launch the whole testsuite
+
+The default rake task is to launch the whole scenarios, so launching the
+following command will play the whole testsuite:
+
+```
+$ bundle exec rake
+```
+
+The HTML report will be generated under `reports/rspec_results.html`.
+
+# customizing the web application being tested
+
+Modify the file `spec/spec_helper.rb`, which contains the variable
+`Capybara.app_host`.
