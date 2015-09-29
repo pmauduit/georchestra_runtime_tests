@@ -6,7 +6,7 @@
 - chromium, chromedriver
 
 By default, the instrumented browser will be chrome/chromium, but it is also
-possible to run the testsuite into firefox.
+possible to run the testsuite under firefox.
 
 # Install
 
