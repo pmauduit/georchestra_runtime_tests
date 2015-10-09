@@ -19,7 +19,7 @@ feature "Browsing mapfishapp (the viewer)" do
     expect(page).to have_content '.. or enter its address'
 
     page.find(:xpath, "//label[text()='Choose a server: ']/../div/div/input").click
-    page.find(:xpath, "//div[text()='geOrchestra demo']").click
+    page.find(:xpath, "//div[text()='geOrchestra.org demo']").click
     page.find(:xpath, "//b[text()='Altitude : shaded relief']").click
     page.find(:xpath, "//button[text()='Add (1)']").click
 
