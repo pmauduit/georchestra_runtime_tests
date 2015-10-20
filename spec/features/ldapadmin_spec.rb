@@ -18,7 +18,7 @@ feature "Browsing the ldapadmin webapp" do
     expect(current_path).to eq('/ldapadmin/account/userdetails')
   end
   # Scenario #3: Attemps to visit the ldapadmin interface
-  it 'should let the testadmin/testadmin user avec access to the main ui' do
+  it 'should let the testadmin/testadmin user have access to the main ui' do
     visit '/ldapadmin/privateui/'
     expect(current_path).to eq('/ldapadmin/privateui/')
     expect(page).to have_title 'LDAPadmin - geOrchestra'
